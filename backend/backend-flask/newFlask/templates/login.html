@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form method="post" class="form-control">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required class="form-input"><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required class="form-input"><br>
+            <input type="submit" value="Login" class="btn btn--primary">
+        </form>
+        <p class="signup-link">Don't have an account? <a href="{{ url_for('register') }}" class="link">Register here</a></p>
+    </div>
+</body>
+</html>

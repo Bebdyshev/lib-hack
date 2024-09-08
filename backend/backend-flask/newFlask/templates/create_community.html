@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Create Community</title>
+    <link rel="stylesheet" href="static\css\main.css">
+    <link rel="stylesheet" href="static\css\create_community.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+<body>
+    <h1>Create a Community</h1>
+    <form method="POST">
+        <div class="create-form">
+            <label for="name">Community Name:</label>
+            <input type="text" name="name" required><br>
+            <label for="description">Description:</label>
+            <textarea name="description"></textarea><br>
+            <button type="submit">Create</button>
+        </div>
+    </form>
+    <a href="{{ url_for('communities') }}" style="text-align: center;">Back to Communities</a>
+</body>
+</html>

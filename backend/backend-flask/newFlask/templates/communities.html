@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Communities</title>
+    <link rel="stylesheet" href="static\css\main.css">
+    <link rel="stylesheet" href="static\css\communities.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+<body>
+<!-- Навигация -->
+<nav class="navbar">
+  <div class="navbar-logo">
+    <img src="static/img/logo.png" alt="Site Icon" class="navbar-icon"> <!-- Иконка сайта -->
+    <a href="/" class="navbar-logo-text">BookShelf</a> <!-- Цвет текста изменен на синий -->
+  </div>
+  <ul class="navbar-links">
+    <li>
+      <a href="/index" class="nav-link home active">
+        <span>Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="/communities" class="nav-link findbook">
+        <span>Community</span>
+      </a>
+    </li>
+    <li>
+      <a href="/calendar" class="nav-link services">
+        <span>Calendly</span>
+      </a>
+    </li>
+    <li>
+      <a href="/create_community" class="nav-link contact">
+        <span>Create Community</span>
+      </a>
+    </li>
+    <li>
+      <div class="navbar-avatar">
+        <img
+          src="https://avatar.iran.liara.run/public/boy?username=username"
+          alt="User Avatar"
+        />
+        <div class="navbar-dropdown">
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="navbar-toggle">
+    <span class="navbar-toggle-icon"></span>
+    <span class="navbar-toggle-icon"></span>
+    <span class="navbar-toggle-icon"></span>
+  </div>
+</nav>
+<hr />
+
+  <div class="communities-container">
+    <div class="create-as">
+        <a href="{{ url_for('create_community') }}" class="create-a" style="text-decoration: none; ">Create New Community</a>
+    </div>
+
+    <ul class="ul-content">
+        {% for community in communities %}
+            <li class="li">
+                <h3>{{ community.name }}</h3>
+                <p>{{ community.description }}</p>
+
+                {% if community.id not in user_communities %}
+                    <form action="{{ url_for('join_community', community_id=community.id) }}" method="POST">
+                        <button type="submit">Join Community</button>
+                    </form>
+                {% else %}
+                    <p>You are a member of this community.</p>
+                {% endif %}
+                
+                <a href="{{ url_for('community_chat', community_id=community.id) }}">View Chat</a>
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+  <script>
+    // JavaScript для управления поведением меню
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleButton = document.querySelector('.navbar-toggle');
+      const navbarLinks = document.querySelector('.navbar-links');
+      const avatar = document.querySelector('.navbar-avatar');
+      const dropdown = document.querySelector('.navbar-dropdown');
+    
+    
+    
+    
+      toggleButton.addEventListener('click', () => {
+        navbarLinks.classList.toggle('open');
+      });
+    
+    
+    
+    
+      avatar.addEventListener('click', () => {
+        dropdown.classList.toggle('open');
+      });
+    });
+</script>
+    
+</body>
+</html>

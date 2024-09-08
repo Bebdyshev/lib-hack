@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+/* Стили для навбара */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #ffffff;
+    color: #333;
+  }
+  
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .navbar-logo a {
+    color: #145C9E;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-links li {
+    margin: 0 1rem;
+  }
+  
+  .navbar-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .nav-link.home,
+  .nav-link.findbook,
+  .nav-link.services,
+  .nav-link.contact {
+    color: #145C9E;
+  }
+  
+  .navbar-links a.active {
+    font-weight: bold;
+  }
+  
+  .navbar-avatar {
+    position: relative;
+  }
+  
+  .navbar-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .navbar-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .navbar-dropdown a {
+    display: block;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navbar-dropdown a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .navbar-toggle-icon {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+  }
+  
+  .navbar-links.open {
+    display: flex;
+  }
+  
+  .navbar-dropdown.open {
+    display: block;
+  }
+  
+  /* Стили для мобильного меню */
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+      flex-direction: column;
+    }
+  
+    .navbar-toggle {
+      display: flex;
+    }
+  }
+  
+
+/* Main container styles */
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Heading styles */
+h1, h2 {
+  color: #145C9E;
+  margin-bottom: 20px;
+}
+
+/* Input and textarea field styles */
+.form-control {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+textarea.form-control {
+  height: 150px;
+  resize: vertical;
+}
+
+/* Button styles */
+.btn {
+  background-color: #145C9E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0f4c81;
+}
+
+.btn--success {
+  background-color: #28a745;
+}
+
+.btn--success:hover {
+  background-color: #218838;
+}
+
+/* Styles for post section */
+.ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ul .li {
+  margin-bottom: 20px;
+}
+
+.ul .li div {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Post buttons */
+.ul .li button {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.ul .li button:hover {
+  background-color: #c9302c;
+}
+
+/* Comment link */
+.ul .li a {
+  color: #145C9E;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.ul .li a:hover {
+  color: #0f4c81;
+}
+
+/* Image styles */
+.ul .li img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+

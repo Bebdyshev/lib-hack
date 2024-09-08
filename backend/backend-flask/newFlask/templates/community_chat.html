@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <title>Community Chat</title>
+    <style>
+        /* Reset and basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .page {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007BFF;
+            font-size: 2.2em;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Chat container */
+        .chat-container {
+            width: 70%;
+            margin-right: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            max-height: 550px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            padding: 12px;
+            background-color: #e9efff;
+            margin-bottom: 12px;
+            border-left: 6px solid #007BFF;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .chat-message:hover {
+            background-color: #dce8ff;
+        }
+
+        .chat-message .username {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .chat-message .message {
+            margin-left: 8px;
+            display: inline-block;
+            color: #555;
+        }
+
+        .chat-message .timestamp {
+            float: right;
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        /* Members container */
+        .members-container {
+            width: 25%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-height: 550px;
+            overflow-y: auto;
+        }
+
+        .members-container h2 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .members-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .members-container li {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .members-container li:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            margin: 20px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        textarea {
+            width: 60%;
+            height: 50px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px 0px 0px 6px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            margin-bottom:0.8%;
+            border-radius: 0px 6px 6px 0px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Disabled styles */
+        .disabled {
+            background-color: #f0f0f0;
+            color: #ccc;
+        }
+
+        /* Link styles */
+        .back-link {
+            display: block;
+            margin: 20px 0;
+            text-align: center;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .form-sender {
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .leave {
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+            padding: 12px;
+            width: 100%;
+            font-size: 15px;
+            border: none;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .chat-container, .members-container {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="static/css/community_chat.css" />
+</head>
+<body>    
+    <div class="page">
+        <div class="container">
+            <div class="chat-container">
+                {% for message in chat_messages %}
+                    <div class="chat-message">
+                        <span class="username">{{ message.username }}:</span>
+                        <span class="message">{{ message.message }}</span>
+                        <span class="timestamp">{{ message.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="members-container">
+                <h2>Members</h2>
+                <ul>
+                    {% for member in community_members %}
+                        <li>{{ member.username }}</li>
+                    {% endfor %}
+                </ul>
+                <form action="{{ url_for('leave_community', community_id=community_id) }}" method="POST">
+                    <button class="leave" type="submit">Leave Community</button>
+                </form>
+            </div>
+        </div>
+
+        {% if is_member %}
+        <form class="form-sender" action="{{ url_for('community_chat', community_id=community_id) }}" method="post">
+            <textarea class="textareaa" name="message" rows="4" cols="50" placeholder="Type your message..." style="resize: none;"></textarea>
+            <input type="submit" value="Send">
+        </form>    
+        {% else %}
+            <p>You must be a member of the community to post messages.</p>
+        {% endif %}
+
+        <a href="{{ url_for('communities') }}" class="back-link">Back to Communities</a>
+    </div>
+</body>
+</html>

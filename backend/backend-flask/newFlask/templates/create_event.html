@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Create Event</title>
+ <link rel="icon" href="static/img/img.png" />
+ <link rel="stylesheet" href="static/css/common.css" />
+ <link rel="stylesheet" href="static/css/create.css" />
+</head>
+
+
+<body>
+ <!-- Навигация -->
+ <nav class="navbar">
+  <div class="navbar-logo">
+    <a href="/index">BookShelf</a>
+  </div>
+  <ul class="navbar-links">
+    <li>
+      <a href="/index" class="nav-link home active">
+        <span>Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="/communities" class="nav-link findbook">
+        <span>Community</span>
+      </a>
+    </li>
+    <li>
+      <a href="/calendar" class="nav-link services">
+        <span>Calendly</span>
+      </a>
+    </li>
+    <li>
+      <a href="/create_event" class="nav-link contact">
+        <span>Create Event</span>
+      </a>
+    </li>
+    <li>
+      <div class="navbar-avatar">
+        <img
+          src="https://avatar.iran.liara.run/public/boy?username=username"
+          alt="User Avatar"
+        />
+        <div class="navbar-dropdown">
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="navbar-toggle">
+    <span class="navbar-toggle-icon"></span>
+    <span class="navbar-toggle-icon"></span>
+    <span class="navbar-toggle-icon"></span>
+  </div>
+ </nav>
+
+
+ <div class="margins event-container">
+   <hr />
+   <form method="POST" action="{{ url_for('create_event') }}">
+     <div class="FlexEvent">
+       <div id="event_form">
+         <div>
+           <label for="event_name">Event name</label>
+           <input type="text" id="event_name" name="event_name" required />
+         </div>
+         <div>
+           <label for="location">Location</label>
+         </div>
+         <div>
+           <label for="colour">Colour</label>
+           <select name="colour" id="colour" required>
+             <option value="blue">🔵 Blue</option>
+             <option value="red">🔴 Red</option>
+             <option value="green">🟢 Green</option>
+             <option value="orange">🟠 Orange</option>
+             <option value="gold">🟡 Gold</option>
+             <option value="purple">🟣 Purple</option>
+           </select>
+         </div>
+         <div>
+           <label for="description">Description</label>
+           <input type="text" placeholder="Write a summary..." id="description" required />
+         </div>
+         <div id="Timee">
+           <div>
+             <label for="time">Start meeting time</label>
+             <input type="time" id="time" name="time"/>
+           </div>
+         </div>
+         <div id="Datee">
+           <div>
+             <label for="date">Start Date</label>
+             <input type="date" id="date" name="date"/>
+           </div>
+         </div>
+       </div>
+       <div class="ShowDetails">
+         <h1>Event Details</h1>
+         <div class="GridShowDetails">
+           <b>Name :</b><label id="showname" class="ShowTexters">---</label>
+           <hr>
+           <b>Location :</b><label id="showlocation" class="ShowTexters">---</label>
+           <hr>
+           <b>Color :</b><label id="showcolor" class="ShowTexters">blue</label>
+           <hr>
+           <b>Start Time :</b><label id="showstarttime" class="ShowTexters">---</label>
+           <hr>
+           <b>Start Date :</b><label id="showstartdate" class="ShowTexters">---</label>
+           <hr>
+           <b>Created On :</b><label id="showcreatedon" class="ShowTexters">---</label>
+           <hr>
+           <b>Description :</b>
+           <p id="showdesp">Introduce the event by providing a short introduction to the name and purpose of the event.</p>
+         </div>
+       </div>
+     </div>
+     <hr />
+     <div class="next_cancel bot">
+       <input id="NextButtonW" type="submit" class="nextbutton" value="Create Event">
+     </div>
+   </form>
+ </div>
+ <script src="JS/createEvent.js"></script>
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+<script>
+    // JavaScript для управления поведением меню
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleButton = document.querySelector('.navbar-toggle');
+      const navbarLinks = document.querySelector('.navbar-links');
+      const avatar = document.querySelector('.navbar-avatar');
+      const dropdown = document.querySelector('.navbar-dropdown');
+    
+    
+    
+    
+      toggleButton.addEventListener('click', () => {
+        navbarLinks.classList.toggle('open');
+      });
+    
+    
+    
+    
+      avatar.addEventListener('click', () => {
+        dropdown.classList.toggle('open');
+      });
+    });
+</script>
+    
+</html>

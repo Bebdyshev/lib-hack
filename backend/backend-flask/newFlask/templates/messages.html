@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/scripts.js" defer></script>
+</head>
+<body onload="loadUsers()">
+    <h1>Messages</h1>
+    <div>
+        <h2>Search Users</h2>
+        <input type="text" id="search-input" placeholder="Search by username">
+        <button onclick="searchUsers()">Search</button>
+    </div>
+    <div>
+        <h2>Users</h2>
+        <ul id="users-list"></ul>  <!-- Сюда загружается список пользователей -->
+    </div>
+    <div id="chat-section" style="display: none;">
+        <h2>Chat with <span id="chat-username"></span></h2>
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Type your message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</body>
+</html>

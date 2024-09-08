@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление записи</title>
+    <link rel="stylesheet" href="static/css/createe.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Site Icon" class="navbar-icon"> <!-- Иконка сайта -->
+            <a href="/" class="navbar-logo-text">BookShelf</a> <!-- Цвет текста изменен на синий -->
+        </div>
+        <ul class="navbar-links">
+            <li>
+                <a href="/index" class="nav-link home active">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/communities" class="nav-link findbook">
+                    <span>Community</span>
+                </a>
+            </li>
+            <li>
+                <a href="/calendar" class="nav-link services">
+                    <span>Calendly</span>
+                </a>
+            </li>
+            <li>
+                <a href="/create" class="nav-link contact">
+                    <span>Create Post</span>
+                </a>
+            </li>
+            <li>
+                <div class="navbar-avatar">
+                    <img src="https://avatar.iran.liara.run/public/boy?username=username" alt="User Avatar" />
+                    <div class="navbar-dropdown">
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="navbar-toggle">
+            <span class="navbar-toggle-icon"></span>
+            <span class="navbar-toggle-icon"></span>
+            <span class="navbar-toggle-icon"></span>
+        </div>
+    </nav>
+    <hr />
+
+    {% block content %}
+        <h1>Добавление записи</h1>
+
+        <form method="post" enctype="multipart/form-data" class="form-control">
+            <input type="text" name="title" placeholder="Введите заголовок статьи" class="form-control"><br>
+            <textarea name="text" placeholder="Введите текст статьи" class="form-control"></textarea><br>
+            <input type="file" name="image" class="form-control"><br>
+            <button class="btn btn--success" type="submit">Добавить</button>
+        </form>
+
+        <h2>Мои посты</h2>
+        <ul class="ul">
+            {% for post in posts %}
+            <li  class="li">
+                <div>
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.text }}</p>
+                    {% if post.image_url %}
+                        <img src="{{ post.image_url }}" alt="Image">
+                    {% endif %}
+                    <p>Created at: {{ post.created_at_str }}</p> <!-- Отображаем время создания -->
+                    <form method="POST" action="{{ url_for('delete_post', post_id=post.post_id) }}">
+                        <button type="submit">Удалить</button>
+                    </form>
+                    <a href="{{ url_for('comments', post_id=post.post_id) }}">Комментарии</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
+</body>
+</html>
+

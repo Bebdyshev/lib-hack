@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Comments for Post {{ post.title }}</title>
+    <link rel="stylesheet" href="../static/css/comments.css">
+</head>
+<body>
+    <div class="post-container">
+        {% if post.image_url %}
+            <img src="{{ post.image_url }}" alt="Post Image" style="max-width: 500px; max-height: 500px;"/>
+        {% endif %}
+        <p><strong>{{ post.title }}</strong></p>
+        <p><strong>Text:</strong> {{ post.text }}</p>
+    </div>
+
+    <div class="comments-container">
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <p><strong>User:</strong> {{ comment.author }}</p>
+                    <p>{{ comment.text }}</p>
+                    <p><small>{{ comment.timestamp }}</small></p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h3>Add a Comment</h3>
+    <form method="POST">
+        <textarea name="comment_text" rows="4" cols="50" required></textarea><br>
+        <input type="submit" value="Add Comment">
+    </form>
+</body>
+</html>

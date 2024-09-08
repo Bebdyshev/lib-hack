@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BS Social Media</title>
+  <link rel="stylesheet" href="static/css/main.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="navbar">
+    <div class="navbar-logo">
+      <img src="static/img/logo.png" alt="Site Icon" class="navbar-icon"> <!-- Иконка сайта -->
+      <a href="/" class="navbar-logo-text">BookShelf</a> <!-- Цвет текста изменен на синий -->
+    </div>
+    <ul class="navbar-links">
+      <li>
+        <a href="/index" class="nav-link home active">
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="/communities" class="nav-link findbook">
+          <span>Community</span>
+        </a>
+      </li>
+      <li>
+        <a href="/calendar" class="nav-link services">
+          <span>Calendly</span>
+        </a>
+      </li>
+      <li>
+        <a href="/create" class="nav-link contact">
+          <span>Create Post</span>
+        </a>
+      </li>
+      <li>
+        <div class="navbar-avatar">
+          <img
+            src="https://avatar.iran.liara.run/public/boy?username=username"
+            alt="User Avatar"
+          />
+          <div class="navbar-dropdown">
+            <a href="/logout">Logout</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="navbar-toggle">
+      <span class="navbar-toggle-icon"></span>
+      <span class="navbar-toggle-icon"></span>
+      <span class="navbar-toggle-icon"></span>
+    </div>
+  </nav>
+  <hr />
+
+<!-- Контейнер -->
+<div class="container">
+  <!-- Middle Panel -->
+  <div class="middle-panel">
+
+
+      <!-- All Posts Section -->
+      <h1>All Posts</h1>
+      <div class="posts-buttons">
+        <a href="{{ url_for('create') }}" class="btn">Create New Post</a>
+        <a href="{{ url_for('liked_posts') }}" class="btn">View Liked Posts</a>
+      </div>
+
+
+      <!-- Все посты -->
+      <ul>
+          {% for post in posts %}
+          <div class="post">
+              <div class="post-top">
+                  <div class="dp"><img src="{{ post.user_dp_url or 'https://avatar.iran.liara.run/public/boy?username=jafar' }}" alt="User"></div>
+                  <div class="post-info">
+                      <div class="name">{{ post.username }}</div>
+                      <div class="time">{{ post.created_at_str }}</div>
+                  </div>
+                  <i class="fas fa-ellipsis-h"></i>
+              </div>
+              <div class="post-content">
+                  <p>{{ post.text }}</p>
+                  {% if post.image_url %}
+                  <img src="{{ post.image_url }}" alt="Post Image" style="max-width: 300px;"/>
+                  {% endif %}
+              </div>
+              <div class="post-bottom">
+                   <form method="POST" action="{{ url_for('like_post', post_id=post.id) }}">
+                       <button type="submit" class="action">
+                           <i class="fas fa-thumbs-up"></i> Like ({{ post.likes_count }})
+                       </button>
+                   </form>
+                   <a href="{{ url_for('comments', post_id=post.id) }}" class="action">
+                       <i class="fas fa-comment"></i> Comment ({{ post.comment_count }})
+                   </a>
+                  <div class="action"><i class="fas fa-share"></i> Share</div>
+              </div>
+          </div>
+          {% endfor %}
+      </ul>
+  </div>
+</div>
+
+<script>
+    // JavaScript для управления поведением меню
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleButton = document.querySelector('.navbar-toggle');
+      const navbarLinks = document.querySelector('.navbar-links');
+      const avatar = document.querySelector('.navbar-avatar');
+      const dropdown = document.querySelector('.navbar-dropdown');
+    
+    
+    
+    
+      toggleButton.addEventListener('click', () => {
+        navbarLinks.classList.toggle('open');
+      });
+    
+    
+    
+    
+      avatar.addEventListener('click', () => {
+        dropdown.classList.toggle('open');
+      });
+    });
+</script>
+    
+
+</body>
+</html>

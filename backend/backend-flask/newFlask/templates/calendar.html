@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Calendly</title>
+   <!-- FullCalendar CSS -->
+   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.css' rel='stylesheet' />
+   <style>
+       /* Применение шрифта Roboto ко всем элементам */
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: 'Roboto', sans-serif;
+       }
+
+
+       /* Стили для навбара */
+       .navbar {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 1rem;
+         background-color: #ffffff; /* Белый фон */
+         color: #333; /* Цвет текста */
+       }
+
+
+       .navbar-logo {
+         display: flex;
+         align-items: center;
+       }
+
+
+       .navbar-logo img {
+         width: 40px; /* Размер иконки сайта */
+         height: 40px;
+         margin-right: 10px;
+       }
+
+
+       .navbar-logo a {
+         color: #145C9E; /* Синий цвет для текста "BookShelf" */
+         text-decoration: none;
+         font-size: 1.5rem;
+       }
+
+
+       .navbar-links {
+         display: flex;
+         list-style: none;
+         margin: 0;
+         padding: 0;
+       }
+
+
+       .navbar-links li {
+         margin: 0 1rem;
+       }
+
+
+       .navbar-links a {
+         color: #333; /* Цвет текста по умолчанию */
+         text-decoration: none;
+         font-size: 1rem;
+       }
+
+
+       .nav-link.home,
+       .nav-link.findbook,
+       .nav-link.services,
+       .nav-link.contact {
+         color: #145C9E; /* Синий цвет #145C9E для указанных ссылок */
+       }
+
+
+       .navbar-links a.active {
+         font-weight: bold;
+       }
+
+
+       .navbar-avatar {
+         position: relative;
+       }
+
+
+       .navbar-avatar img {
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+         cursor: pointer;
+       }
+
+
+       .navbar-dropdown {
+         display: none;
+         position: absolute;
+         top: 100%;
+         right: 0;
+         background-color: #ffffff; /* Белый фон для выпадающего меню */
+         color: #333;
+         border: 1px solid #ddd;
+         border-radius: 5px;
+         padding: 0.5rem;
+         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+       }
+
+
+       .navbar-dropdown a {
+         display: block;
+         padding: 0.5rem;
+         text-decoration: none;
+         color: #333;
+       }
+
+
+       .navbar-dropdown a:hover {
+         background-color: #f1f1f1;
+       }
+
+
+       .navbar-toggle {
+         display: none;
+         flex-direction: column;
+         cursor: pointer;
+       }
+
+
+       .navbar-toggle-icon {
+         width: 25px;
+         height: 3px;
+         background-color: #333; /* Цвет иконок для мобильного меню */
+         margin: 3px 0;
+       }
+
+
+       .navbar-links.open {
+         display: flex;
+       }
+
+
+       .navbar-dropdown.open {
+         display: block;
+       }
+
+
+       /* Стили для мобильного меню */
+       @media (max-width: 768px) {
+         .navbar-links {
+           display: none;
+           flex-direction: column;
+         }
+
+
+         .navbar-toggle {
+           display: flex;
+         }
+       }
+
+
+       #calendar {
+           max-width: 900px;
+           margin: 0 auto;
+       }
+
+
+       .event-details {
+           display: none;
+           position: fixed;
+           top: 20%;
+           left: 50%;
+           transform: translate(-50%, 0);
+           width: 300px;
+           padding: 20px;
+           background: #fff;
+           border: 1px solid #ddd;
+           box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+           z-index: 1000;
+       }
+
+
+       .event-details h3 {
+           margin: 0 0 10px;
+       }
+
+
+       .event-details button {
+           display: block;
+           margin: 10px 0 0;
+           padding: 10px;
+           background: #007bff;
+           color: #fff;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+
+
+       .event-details button:hover {
+           background: #0056b3;
+       }
+   </style>
+</head>
+<body>
+   <!-- Навигация -->
+   <nav class="navbar">
+     <div class="navbar-logo">
+       <img src="static/img/logo.png" alt="Site Icon" class="navbar-icon"> <!-- Иконка сайта -->
+       <a href="/" class="navbar-logo-text">BookShelf</a> <!-- Цвет текста изменен на синий -->
+     </div>
+     <ul class="navbar-links">
+       <li>
+         <a href="/" class="nav-link home active">
+           <span>Home</span>
+         </a>
+       </li>
+       <li>
+         <a href="/communities" class="nav-link findbook">
+           <span>Community</span>
+         </a>
+       </li>
+       <li>
+         <a href="/calendar" class="nav-link services">
+           <span>Calendly</span>
+         </a>
+       </li>
+       <li>
+         <a href="/create_event" class="nav-link contact">
+           <span>Create Event</span>
+         </a>
+       </li>
+       <li>
+         <div class="navbar-avatar">
+           <img
+             src="https://avatar.iran.liara.run/public/boy?username=username"
+             alt="User Avatar"
+           />
+           <div class="navbar-dropdown">
+             <a href="/logout">Logout</a>
+           </div>
+         </div>
+       </li>
+     </ul>
+     <div class="navbar-toggle">
+       <span class="navbar-toggle-icon"></span>
+       <span class="navbar-toggle-icon"></span>
+       <span class="navbar-toggle-icon"></span>
+     </div>
+   </nav>
+   <hr />
+   <div id="calendar"></div>
+
+
+
+
+   <!-- Modal for event details -->
+   <div id="event-details" class="event-details">
+       <h3 id="event-title"></h3>
+       <p><strong>Location:</strong> <span id="event-location"></span></p>
+       <p><strong>Time:</strong> <span id="event-time"></span></p>
+       <p><strong>Description:</strong> <span id="event-description"></span></p>
+       <button onclick="closeEventDetails()">Close</button>
+   </div>
+
+
+   <!-- FullCalendar JS -->
+   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+   <script>
+       document.addEventListener('DOMContentLoaded', function() {
+           const events = {{ events | tojson }}; // Убедитесь, что переменная events передается правильно
+
+
+           const calendarEl = document.getElementById('calendar');
+           const eventDetailsEl = document.getElementById('event-details');
+           const eventTitleEl = document.getElementById('event-title');
+           const eventLocationEl = document.getElementById('event-location');
+           const eventTimeEl = document.getElementById('event-time');
+           const eventDescriptionEl = document.getElementById('event-description');
+
+
+           const calendar = new FullCalendar.Calendar(calendarEl, {
+               initialView: 'dayGridMonth',
+               events: events.map(event => ({
+                   title: event.event_name,
+                   start: `${event.date}T${event.time}`, // Исправлен синтаксис
+                   color: event.colour,
+                   extendedProps: {
+                       location: event.location,
+                       description: event.description,
+                       time: event.time
+                   }
+               })),
+               eventClick: function(info) {
+                   eventTitleEl.textContent = info.event.title;
+                   eventLocationEl.textContent = info.event.extendedProps.location;
+                   eventTimeEl.textContent = info.event.extendedProps.time;
+                   eventDescriptionEl.textContent = info.event.extendedProps.description;
+                   eventDetailsEl.style.display = 'block';
+               }
+           });
+
+
+           calendar.render();
+       });
+
+
+       function closeEventDetails() {
+           document.getElementById('event-details').style.display = 'none';
+       }
+
+    // JavaScript для управления поведением меню
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleButton = document.querySelector('.navbar-toggle');
+      const navbarLinks = document.querySelector('.navbar-links');
+      const avatar = document.querySelector('.navbar-avatar');
+      const dropdown = document.querySelector('.navbar-dropdown');
+    
+    
+    
+    
+      toggleButton.addEventListener('click', () => {
+        navbarLinks.classList.toggle('open');
+      });
+    
+    
+    
+    
+      avatar.addEventListener('click', () => {
+        dropdown.classList.toggle('open');
+      });
+    });
+
+   </script>
+</body>
+</html>

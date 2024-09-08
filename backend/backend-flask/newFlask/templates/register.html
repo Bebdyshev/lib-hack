@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesreg.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form method="post" class="form-control">
+            <label for="full_name">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" required class="form-input"><br>
+            
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number" required class="form-input"><br>
+            
+            <label for="rank">Rank:</label>
+            <input type="text" id="rank" name="rank" class="form-input"><br>
+            
+            <label for="pfp_url">Profile Picture URL:</label>
+            <input type="text" id="pfp_url" name="pfp_url" class="form-input"><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required class="form-input"><br>
+            
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required class="form-input"><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required class="form-input"><br>
+            
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" class="form-input">
+                <option value="true">Male</option>
+                <option value="false">Female</option>
+            </select><br>
+            
+            <label for="role">Role:</label>
+            <select id="role" name="role" class="form-input">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select><br>
+            
+            <input type="submit" value="Register" class="btn btn--primary">
+        </form>
+        <p class="signup-link">Already have an account? <a href="{{ url_for('login') }}" class="link">Login here</a></p>
+    </div>
+</body>
+</html>

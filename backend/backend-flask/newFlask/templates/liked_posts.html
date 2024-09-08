@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Liked Posts</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/liked_posts.css">
+    <style>
+        .post-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center-align items horizontally */
+            margin: 0 auto;
+        }
+        .post-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .post-container li {
+            margin-bottom: 20px; /* Add space between posts */
+        }
+        .post {
+            text-align: center; /* Center-align text inside each post */
+            border: 1px solid #ddd; /* Add border to post */
+            padding: 20px;
+            border-radius: 5px; /* Rounded corners */
+            max-width: 800px; /* Limit the maximum width of posts */
+            width: 100%; /* Ensure posts take up full width of container */
+        }
+        .post img {
+            max-width: 100%; /* Ensure images fit within the post width */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="/" class="navbar-logo-text">BookShelf</a> <!-- Цвет текста изменен на синий -->
+        </div>
+        <ul class="navbar-links">
+          <li>
+            <a href="/" class="nav-link home">
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/communities" class="nav-link findbook active">
+              <span>Community</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar" class="nav-link services">
+              <span>Calendly</span>
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="nav-link contact">
+              <span>Contact</span>
+            </a>
+          </li>
+          <li>
+            <div class="navbar-avatar">
+              <img
+                src="https://avatar.iran.liara.run/public/boy?username=username"
+                alt="User Avatar"
+              />
+              <div class="navbar-dropdown">
+                <a href="/profile">Profile</a>
+                <a href="/matches">Matches</a>
+                <a href="/reservations">Reservations</a>
+                <a href="/logout">Logout</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="navbar-toggle">
+          <span class="navbar-toggle-icon"></span>
+          <span class="navbar-toggle-icon"></span>
+          <span class="navbar-toggle-icon"></span>
+        </div>
+      </nav>
+    <div class="page">
+        <div class="page-container"></div>
+        <h1>Liked Posts</h1>
+        <div class="post-container">
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <div class="post">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.text }}</p>
+                            {% if post.image_url %}
+                                <img src="{{ post.image_url }}" alt="Post Image"/>
+                            {% endif %}
+                            <p>By User: {{ post.username }}</p>
+                            <p>Created at: {{ post.created_at_str }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
