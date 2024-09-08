@@ -1,0 +1,27 @@
+.carousel-container {
+  width: 100%;
+  max-width: 800px; 
+  margin: 0 auto;
+}
+
+.carousel-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; 
+  width: 100px;
+}
+
+.carousel-image {
+  margin-left: 15%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto; 
+  height: auto; 
+}
+
+.carousel-slide img {
+  width: 70%; 
+  height: auto; 
+  object-fit: cover; 
+}

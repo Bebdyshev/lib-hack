@@ -1,0 +1,130 @@
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: 0.3s, color 0.3s;
+}
+
+.tab:hover {
+    background-color: #e2e2e2;
+}
+
+.tab.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.match-item {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 600px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure the icon-overlay is positioned relative to this container */
+}
+
+.books-container {
+    display: flex;
+    align-items: center;
+}
+
+.book-cover-container {
+    position: relative;
+    flex: 1;
+}
+
+.book-cover-matches {
+    width: 300px;
+    height: auto;
+}
+
+.contact-info {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.book-cover-container:hover .contact-info {
+    display: block;
+}
+
+.icon-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.icon-overlay .fa-arrows-rotate {
+    font-size: 36px;
+    color: #007bff;
+}
+
+.buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.accept-btn, .decline-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.accept-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.accept-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.decline-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.decline-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.contact-icon {
+    color: #000;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.contact-icon:hover {
+    color: #007bff;
+}

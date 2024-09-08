@@ -1,0 +1,224 @@
+.tinder-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tinder-card {
+    top: 30px;
+    position: absolute;
+    width: 65%;
+    height: 650px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    z-index: 1003;
+}
+
+.tinder-img {
+    width:50%;
+    height: 100%;
+    
+}
+
+.text {
+    padding: 20px;
+    width: 60%;
+    height: 100%;
+}
+
+.book-cover {
+    width: 100%;
+    height: 100%;
+}
+
+.tinder-container-jn, .tinder-container-jn-jn {
+    position: absolute;
+    height: 650px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.tinder-container-jn {
+    z-index: 1002;
+    width: 62%;
+    top: 37px;
+    background-color: white;
+}
+
+.tinder-container-jn-jn {
+    z-index: 1001;
+    width: 59%;
+    top: 46px;
+    background-color: white;
+}
+
+.title {
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.author {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.description {
+    color: rgb(33, 33, 33);
+    font-size: 18px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+hr {
+    margin: 10px;
+    border: none;
+    height: 1px;
+    background-color: rgb(145, 145, 145);
+}
+
+.popup-overlay {
+    width: 100vh;
+    height: 100vh;
+    z-index: 1003;
+}
+
+.createButton {
+    position: absolute;
+    top: 80vh; /* Регулируйте значение для правильного расположения */
+    right: 50%;
+    transform: translateX(50%); /* Центрирование кнопки по горизонтали */
+    z-index: 1005; /* Убедитесь, что кнопка видна поверх других элементов */
+  }
+
+
+  .bookButton {
+    right: 45%; 
+  }
+  
+  .book {
+    padding: 10px 20px;
+    border-radius: 13px;
+    z-index: 1005; /* Убедитесь, что кнопка видна поверх других элементов */
+  }
+
+  .create{
+    border-radius: 50%;
+    z-index: 1005; /* Убедитесь, что кнопка видна поверх других элементов */
+  }
+
+  .create {
+    font-size: 24px;
+    padding: 10px 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create:hover {
+    background-color: #0056b3;
+  }
+
+  .swipe-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    opacity: 0.8;
+    pointer-events: none; /* To prevent icons from interfering with the swipe */
+  }
+  
+  .heart-icon {
+    color: red;
+    z-index: 1006;
+  }
+  
+  .broken-heart-icon {
+    color: black;
+    z-index: 1006;
+  }
+
+  .icon-container {
+    position: absolute;
+    top: 39vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 1005;
+    background-color: #0056b3;
+  }
+  
+  svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    padding: 40px;
+    border-radius: 50%;
+  }
+  
+  .yes {
+    padding: 50px;
+    border-radius: 50%;
+  }
+
+  .red {
+    background-color: #0056b3;
+  }
+
+  .library-indicator {
+    padding: 5px 10px 5px 10px;
+    width: fit-content;
+    background-color: rgb(216, 160, 56);
+    border-radius: 15px;
+    font-size: 12;
+  }
+
+  .bookcrossing-indicator {
+    padding: 5px 10px 5px 10px;
+    width: fit-content;
+    background-color: rgb(216, 56, 56);
+    border-radius: 15px;
+    font-size: 12;
+    color: white;
+  }
+
+  .library-book-container {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    gap: 15px; /* Adjust the gap as needed */
+}
+
+.library-indicator {
+    font-size: 14px; /* Adjust font size as needed */
+    color: #666; /* Adjust text color as needed */
+}
+
+.bookButton .book {
+    background-color: #007bff; /* Adjust button background color as needed */
+    color: white; /* Adjust button text color as needed */
+    border: none;
+    padding: 8px 16px; /* Adjust padding as needed */
+    border-radius: 4px; /* Adjust border radius as needed */
+    cursor: pointer;
+}
+
+.bookButton .book:hover {
+    background-color: #0056b3; /* Adjust hover background color as needed */
+}

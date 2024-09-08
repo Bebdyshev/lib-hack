@@ -1,0 +1,98 @@
+/* styles.css */
+.container {
+  position: relative;
+  display: flex;
+  height: 500px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background-color: var(--background-color, #f0f0f0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-card {
+  position: relative;
+  width: 16rem;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  padding: 1rem;
+  background-color: var(--card-bg-color, #ffffff);
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.img {
+  border-radius: 9999px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.figcaption {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-color, #333333);
+}
+
+.username {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted-color, #666666);
+}
+
+.blockquote {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.marquee {
+  display: flex;
+  gap: 1rem; /* Space between cards */
+  animation: marquee 15s linear infinite;
+}
+
+.marquee.reverse {
+  flex-direction: row-reverse;
+  animation: marquee-reverse 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.gradient-left,
+.gradient-right {
+  pointer-events: none;
+  position: absolute;
+  inset-y: 0;
+  width: 33%;
+  background: linear-gradient(to right, var(--gradient-color-left, #ffffff), transparent);
+}
+
+.gradient-right {
+  left: 0;
+  background: linear-gradient(to left, var(--gradient-color-right, #ffffff), transparent);
+}
